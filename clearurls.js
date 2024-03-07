@@ -696,6 +696,15 @@ function start() {
      * Check the request.
      */
     function promise(requestDetails) {
+        // white list
+        const XWhiteList = getData("XWhiteList");
+        if (XWhiteList && request.url) {
+            const arr = XWhiteList.split(/[,， ]/).filter(item => item);
+            if (arr.find(i => request.url.includes(i))){
+                return {}
+            }
+        }
+
         if (isDataURL(requestDetails)) {
             return {};
         } else {

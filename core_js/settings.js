@@ -83,6 +83,7 @@ function save() {
         .then(() => saveData("ruleURL", document.querySelector('input[name=ruleURL]').value))
         .then(() => saveData("hashURL", document.querySelector('input[name=hashURL]').value))
         .then(() => saveData("types", document.querySelector('input[name=types]').value))
+        .then(() => saveData("XWhiteList", document.querySelector('input[name=XWhiteList]').value))
         .then(() => saveData("logLimit", Math.max(0, Math.min(5000, document.querySelector('input[name=logLimit]').value))))
         .then(() => browser.runtime.sendMessage({
             function: "setBadgedStatus",
@@ -124,6 +125,7 @@ function getData() {
         .then(() => loadData("hashURL"))
         .then(() => loadData("types"))
         .then(() => loadData("logLimit"))
+        .then(() => loadData("XWhiteList"))
         .then(logData => {
             if (logData.response === undefined) {
                 document.getElementById('logLimit_label').textContent = translate('setting_log_limit_label', "0");
@@ -150,7 +152,7 @@ function getData() {
         })
         .then(() => {
             /**
-             * Since Firefox 85, eTags can no longer be 
+             * Since Firefox 85, eTags can no longer be
              * used for tracking users over multiple sites.
              */
             browser.runtime.sendMessage({
@@ -214,6 +216,7 @@ function setText() {
     document.getElementById('badged_color_label').textContent = translate('badged_color_label');
     document.getElementById('reset_settings_btn').textContent = translate('setting_html_reset_button');
     document.getElementById('reset_settings_btn').setAttribute('title', translate('setting_html_reset_button_title'));
+    document.getElementById('XWhiteList').textContent = 'XWhiteList';
     document.getElementById('rule_url_label').textContent = translate('setting_rule_url_label');
     document.getElementById('hash_url_label').textContent = translate('setting_hash_url_label');
     document.getElementById('types_label').innerHTML = translate('setting_types_label');

@@ -225,6 +225,7 @@ function initSettings() {
     storage.pingBlocking = true;
     storage.eTagFiltering = false;
     storage.watchDogErrorCount = 0;
+    storage.XWhiteList = '';
 
     if (getBrowser() === "Firefox") {
         storage.types = ["font", "image", "imageset", "main_frame", "media", "object", "object_subrequest", "other", "script", "stylesheet", "sub_frame", "websocket", "xml_dtd", "xmlhttprequest", "xslt"];
